@@ -1,5 +1,5 @@
 #Eoin
-import datetime;
+from datetime import datetime,timedelta;
 
 '''
 Arguments: string with rtf data

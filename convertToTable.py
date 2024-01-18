@@ -1,7 +1,7 @@
 #Mahi
 
 from LLaMaInterface import separateCellHeaders
-import datetime;
+from datetime import datetime,timedelta;
 
 '''
 Table format: [Disease Name][Cases][Location Name][Lat/Long][TimeStampStart][TimeStampEnd]
@@ -64,5 +64,5 @@ Kegalle 91 1557 1 12 0 1 0 2 0 8 22 352 1 19 0 3 0 0 5 219 1 33 1 18 28 100
 Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
-    table = convertToTable(testData,["sws","sws"])
+    table = convertToTable(testData,[datetime.datetime(2023, 6, 9) +timedelta(days=-7),datetime.datetime(2023, 6, 9)])
     printTable(table)
