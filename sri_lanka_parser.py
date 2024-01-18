@@ -1,6 +1,6 @@
 import sys
 from PDFoperations import formatPDF, PDFtoRTF
-from rtfExtractor import extractTextFromRTF
+from rtfExtractor import extractDataFromRTF
 from convertToTable import convertToTable
 
 
