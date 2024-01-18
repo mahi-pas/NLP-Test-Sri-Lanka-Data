@@ -1,7 +1,7 @@
 #Mahi
 
 from LLaMaInterface import separateCellHeaders
-
+import datetime;
 
 '''
 Table format: [Disease Name][Cases][Location Name][Lat/Long][TimeStampStart][TimeStampEnd]
@@ -11,11 +11,26 @@ def convertToTable(importantText,timestamps):
     rows = importantText.split('\n')
     labels = separateCellHeaders(rows[0])
     if __name__ == '__main__': #for testing
-        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Chickenpox','Meningitis','Leishmaniasis','WRCD']
-    table.append(labels)
-    print(rows)
+        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human','Chickenpox','Meningitis','Leishmaniasis','WRCD']
+    
+    for i in range(2,len(rows)):
+        data = rows[i].strip().split(" ")
+        locationName = data[0]
+        latLong = ""
+        for j in range(1,len(data)-2,2):
+            cases = data[j]
+            diseaseName = labels[j//2+1]
+            table.append([diseaseName,cases,locationName,latLong,timestamps[0],timestamps[1]])
     return table
 
+def printTable(table):
+    for heading in ['Disease Name','Cases','Location Name','Lat/Long','TimeStampStart','TimeStampEnd']:
+        print("{:<15}".format(heading),end=" ")
+    print("")
+    for row in table:
+        for col in row:
+            print("{:<15}".format(col),end=" ")
+        print("")
 
 
 if __name__ == '__main__':
@@ -49,6 +64,5 @@ Kegalle 91 1557 1 12 0 1 0 2 0 8 22 352 1 19 0 3 0 0 5 219 1 33 1 18 28 100
 Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
-    table = convertToTable(testData)
-
-    print(table)
+    table = convertToTable(testData,["sws","sws"])
+    printTable(table)

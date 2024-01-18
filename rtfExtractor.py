@@ -1,4 +1,5 @@
 #Eoin
+import datetime;
 
 '''
 Arguments: string with rtf data

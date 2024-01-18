@@ -1,4 +1,5 @@
 import sys
+import datetime;
 from PDFoperations import formatPDF, PDFtoRTF
 from rtfExtractor import extractDataFromRTF
 from convertToTable import convertToTable
