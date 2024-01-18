@@ -3,8 +3,19 @@
 from LLaMaInterface import separateCellHeaders
 from datetime import datetime,timedelta;
 
+
+latLongDict = {
+    "Colombo" : ["6.9271N","79.8612E"],
+    "Gampaha" : ["7.0840N", "80.0098E"],
+    "Kalutara" : ["6.5854N","79.9607E"],
+    "Kandy" : ["7.2906N","80.6337E"],
+    "Matale" : ["7.4675N","80.6234E"],
+    "NuwaraEliya" : ["6.9497N","80.7891E"]
+}
+
+
 '''
-Table format: [Disease Name][Cases][Location Name][Lat/Long][TimeStampStart][TimeStampEnd]
+Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][TimeStampStart][TimeStampEnd]
 '''
 def convertToTable(importantText,timestamps):
     table = []
@@ -16,15 +27,15 @@ def convertToTable(importantText,timestamps):
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         locationName = data[0]
-        latLong = ""
+        latLong = latLongDict.get(locationName,["Not Found","Not Found"])
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2+1]
-            table.append([diseaseName,cases,locationName,latLong,timestamps[0].strftime("%m/%d/%Y"),timestamps[1].strftime("%m/%d/%Y")])
+            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%m/%d/%Y"),timestamps[1].strftime("%m/%d/%Y")])
     return table
 
 def printTable(table):
-    for heading in ['Disease Name','Cases','Location Name','Lat/Long','TimeStampStart','TimeStampEnd']:
+    for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
         print("{:<15}".format(heading),end=" ")
     print("")
     for row in table:
