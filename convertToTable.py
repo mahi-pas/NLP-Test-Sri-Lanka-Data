@@ -2,14 +2,19 @@
 
 from LLaMaInterface import separateCellHeaders
 
+
+'''
+Table format: [Disease Name][Cases][Location Name][Lat/Long][TimeStampStart][TimeStampEnd]
+'''
 def convertToTable(importantText):
     table = []
     rows = importantText.split('\n')
-    labels = rows[0]
+    labels = separateCellHeaders(rows[0])
+    if __name__ == '__main__': #for testing
+        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Chickenpox','Meningitis','Leishmaniasis','WRCD']
+    table.append(labels)
     print(rows)
     return table
-
-
 
 
 

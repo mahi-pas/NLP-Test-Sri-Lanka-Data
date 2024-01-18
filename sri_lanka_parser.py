@@ -16,8 +16,8 @@ if __name__ == "__main__":
 
     formattedPDF = formatPDF(filename) #Alan
     rtfData = PDFtoRTF(formattedPDF) #Alan
-    importantText = extractTextFromRTF(rtfData) #Eoin
-    table = convertToTable(importantText) #Mahi
+    importantText,timestamps = extractDataFromRTF(rtfData) #Eoin
+    table = convertToTable(importantText,timestamps) #Mahi
 
     print(table)
 
