@@ -6,7 +6,7 @@ from LLaMaInterface import separateCellHeaders
 '''
 Table format: [Disease Name][Cases][Location Name][Lat/Long][TimeStampStart][TimeStampEnd]
 '''
-def convertToTable(importantText):
+def convertToTable(importantText,timestamps):
     table = []
     rows = importantText.split('\n')
     labels = separateCellHeaders(rows[0])
