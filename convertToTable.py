@@ -37,11 +37,11 @@ def convertToTable(importantText,timestamps):
 def printTable(table):
     for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
         print("|{:<20}".format(heading),end=" ")
-    print("")
+    print("|")
     for row in table:
         for col in row:
             print("|{:<20}".format(col),end=" ")
-        print("")
+        print("|")
 
 
 if __name__ == '__main__':
