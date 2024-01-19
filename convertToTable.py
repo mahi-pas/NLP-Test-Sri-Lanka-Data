@@ -36,11 +36,11 @@ def convertToTable(importantText,timestamps):
 
 def printTable(table):
     for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
-        print("{:<15}".format(heading),end=" ")
+        print("|{:<20}".format(heading),end=" ")
     print("")
     for row in table:
         for col in row:
-            print("{:<15}".format(col),end=" ")
+            print("|{:<20}".format(col),end=" ")
         print("")
 
 
