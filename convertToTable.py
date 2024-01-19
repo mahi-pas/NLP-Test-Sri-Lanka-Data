@@ -31,7 +31,7 @@ def convertToTable(importantText,timestamps):
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2+1]
-            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%m/%d/%Y"),timestamps[1].strftime("%m/%d/%Y")])
+            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%Y-%m-%d"),timestamps[1].strftime("%Y-%m-%d")])
     return table
 
 def printTable(table):
