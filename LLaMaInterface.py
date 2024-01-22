@@ -17,21 +17,24 @@ def separateCellHeaders(row):
 
     RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD
     '''
-    pre_prompt = "You are a helpful, respectful and honest assistant. Always answer as concise as possible. You don't include any other words than asked information. You only response once as 'Assistant'."
-    prompt = "Separate these into different titles for columns (some are seperated by blank and some are not): RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
+    pre_prompt = "You are a helpful assistant. Always answer as concise as possible. You only response once as 'Assistant'."
+    prompt = "Seperate these into different titles for columns: RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
 
-    output = replicate.run('',#LMM address
+    output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', #LMM address
                            input={
-                               "prompt": f"{pre_prompt} {prompt} Assistant: ",
-                               "temperature": 0.5,
+                               "prompt": f"{pre_prompt} {prompt}",
+                               "temperature": 0.75,
                                "top_p":0.9,
-                               "max_length":256,
-                               "repetition_penalty":1,
+                               "max_length":128,
                                "max_new_tokens": 500,
-                               "min_new_tokens": -1
+                               "min_new_tokens": -1,
                                })
     
-    print(output)
-    print("Testing Cases?")
+    response = ""
+
+    for tokens in output:
+        response += tokens
+
+    print(response)
 
 separateCellHeaders("")
