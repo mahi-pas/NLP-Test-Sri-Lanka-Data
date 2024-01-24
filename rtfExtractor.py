@@ -703,7 +703,7 @@ COLOMBO 10
 
 def extract_date_components(text):
     # Define the pattern to match the date format (assuming day, month, year)
-    pattern = r'refers to returns received on or before (\d{2})(th) (\w+), (\d{4})'
+    pattern = r'refers to returns received on or before (\d{1,2})(?:st|nd|rd|th)? (\w+), (\d{4})'
     
     # Use re.search to find the match in the text
     match = re.search(pattern, text)
@@ -711,11 +711,12 @@ def extract_date_components(text):
     # Check if a match is found
     if match:
         # Extract the matched components
-        day, _, month, year = match.groups()
+        day, month, year = match.groups()
         
         return day, month, year
     else:
         return None, None, None
+        print("Error: No match")
 
 
 
@@ -764,7 +765,7 @@ def extractDataFromRTF(rtfData):
     table_date = datetime(int(year), int(month), int(day))
     table_change_date = datetime(2013, 5, 17)
 
-    if(table_date < table_change_date):
+    if(table_date > table_change_date):
         table = extract_table("RDHS", "Table", rtfData)
     else:
         table = extract_table("DPDHS", "Source", rtfData)
@@ -776,4 +777,4 @@ def extractDataFromRTF(rtfData):
     return table, table_date
 
 if __name__ == "__main__":
-    extractDataFromRTF(testString3)
+    extractDataFromRTF(testString2)
