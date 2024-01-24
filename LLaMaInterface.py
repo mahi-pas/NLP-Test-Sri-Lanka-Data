@@ -25,7 +25,7 @@ def separateCellHeaders(row):
     
     output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', #LMM address
                            input={
-                               "prompt": f"{pre_prompt} {prompt}",
+                               "prompt": f"{row}",
                                "temperature": 0.75,
                                "top_p":0.9,
                                "max_length":128,
@@ -40,4 +40,8 @@ def separateCellHeaders(row):
 
     return response
 
-separateCellHeaders("RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD")
+result = separateCellHeaders("What is the lat/long of Colombo, Sri Lanka (as accurate as possible)?")
+
+print(result)
+
+
